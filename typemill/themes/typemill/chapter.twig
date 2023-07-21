@@ -1,0 +1,69 @@
+
+	{% if settings.themes.typemill.chapter %}
+	
+		<div class="chapterNumber">{{ settings.themes.typemill.chapter }} {{ item.chapter }}</div>
+	
+	{% endif %}
+	
+	{% if content is empty %}
+	
+		<h1>{{ item.name }}</h1>
+
+	{% endif %}
+	
+	<h1>{{ title }}</h1>
+	
+	{{ content }}
+
+
+	{% if item.contains == 'pages' %}
+		<div class="toc-nav">
+			
+			<ul>
+				{% for element in item.folderContent %}
+
+					<li class="level-2"><a href="{{ element.urlAbs }}">{% if settings.themes.typemill.chapnum %}{{ element.chapter }} {% endif %}{{ element.name }}</a></li>
+				
+				{% endfor %}
+			</ul>
+			
+		</div>
+
+	{% elseif item.contains == 'posts' %}
+
+		{% set pagesize = 10 %}
+		{% set pages = ( item.folderContent|length / pagesize)|round(0, 'ceil') %}
+		{% set currentpage = currentpage ? currentpage : 1 %}
+		{% set currentposts = (currentpage - 1) * pagesize %} 
+
+		<ul class="post">
+
+			{% for element in item.folderContent|slice(currentposts, pagesize) %}
+
+				{% set post = getPageMeta(settings, element) %}
+				{% set date = element.order[0:4] ~ '-' ~ element.order[4:2] ~ '-' ~ element.order[6:2] %}
+
+				<li class="post-entry">
+					<a href="{{ element.urlAbs }}"><h2>{{ post.meta.title }}</h2></a>
+					<small><time datetime="{{date}}">{{ date | date("d.m.Y") }}</time> | {{ post.meta.author }}</small>
+					<p>{{ post.meta.description }}</p>
+				</li>
+
+			{% endfor %}
+			
+		</ul>
+
+		{% if pages > 1 %}
+			<hr class="mv4">
+			<p>Page: 
+				{% for i in 1 .. pages %}
+					{% if i == currentpage %}
+						{{i}}
+					{% else %}
+						<a class="page" href="{{ item.urlAbs }}/p/{{i}}">{{i}}</a>
+					{% endif %}
+				{% endfor %}
+			</p>
+		{% endif %}
+
+	{% endif %}	

@@ -1,0 +1,15 @@
+/* Some incredibly minimal styling for the footer.
+   May or may not be expanded at some future time. */
+
+footer#pagefooter {
+    background-color: var(--tertiary-color);
+    padding: 2em;
+    text-align: center;
+
+    div.pagewrap {
+        border-bottom: .3rem dashed var(--secondary-color);
+        margin-bottom: 2rem;
+        padding: 0rem 10%;
+        text-align: left;
+    }
+}

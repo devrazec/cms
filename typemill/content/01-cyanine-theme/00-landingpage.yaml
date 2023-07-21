@@ -1,0 +1,9 @@
+meta:
+    title: 'The Landingpage'
+    description: "Cyanine provides an optional landingpage with six segments: \nIntro with the content of the home page and an additional link/button.\nInfo with individual markdown content.\nTeaser with two elements. Each element has a headline, a text and a link/button.\nContrast with a headline, text-input and a"
+    owner: ''
+    author: Unknown
+    created: '2023-07-21'
+    time: 03-55-29
+    navtitle: landingpage
+    modified: '2022-01-05'

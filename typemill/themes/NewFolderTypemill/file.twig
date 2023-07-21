@@ -1,0 +1,48 @@
+{# The (very basic) markup for individual files/pages. #}
+
+    <section id="pagecontent">
+
+        {% if settings.themes.NewFolderTypemill.pagelayout == "layoutsideleft" %}
+
+            <header class="layoutsideleftheader" >
+                <div class="headerwrap">
+                    <h1>{{ title }}</h1>
+                </div>
+            </header>
+
+        {% endif %}
+
+        <div class="pagewrap">
+
+        {% include 'partials/breadcrumb.twig' %}
+
+            <div class="content">
+                <article>
+
+                    {% if settings.themes.NewFolderTypemill.pagelayout == "layoutcentered" %}
+
+                        <header>
+                            <h1>{{ title }}</h1>
+                        </header>
+
+                    {% endif %}
+                    
+                    {{ content }}
+                    
+                </article>
+
+            </div>
+
+            <nav class="prevnext">
+                
+                {% if item.prevItem.elementType == 'file' %}
+                    <a href="{{ item.prevItem.urlRel }}" class="previtem">{{ item.prevItem.name }}</a>
+                {% endif %}
+
+                {% if item.nextItem.elementType == 'file' %}
+                    <a href="{{ item.nextItem.urlRel }}" class="nextitem">{{ item.nextItem.name }}</a>
+                {% endif %}
+            </nav>
+
+        </div>
+    </section>

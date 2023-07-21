@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{{ settings.langattr|default('en') }}">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<meta name="description" content="{{ metatabs.meta.description }}" />
+		<meta name="author" content="{{ metatabs.meta.author }}" />
+		<meta name="generator" content="TYPEMILL" />
+		<link rel="canonical" href="{{ item.urlAbs }}" />
+
+		{{ assets.renderMeta() }}
+
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ base_url }}/themes/typemill/css/fontello/css/fontello.css" />
+			<link rel="stylesheet" href="{{ base_url }}/themes/typemill/css/normalize.css" />
+			<link rel="stylesheet" href="{{ base_url }}/themes/typemill/css/style.css?20220108" />
+			
+			{{ assets.renderCSS() }}
+			
+		{% endblock %}
+	</head>
+	<body>
+		<div class="main">
+			<header>
+				<p><a href="{{ base_url }}">
+					{% if logo %}
+						<img src="{{ base_url }}/{{ logo }}" class="logo"/>
+					{% else %}
+						{{ settings.title }}
+					{% endif %}
+				</a></p>
+			</header>
+			
+			<article class="{{ item.elementType == 'file' ? 'page' : 'chapter' }}">
+				{% block content %}{% endblock %}
+			</article>
+
+			{% if widgets %}
+				{% for index,widget in widgets %}
+					<aside id="{{ index }}">
+						{{ widget }}					
+					</aside>
+				{% endfor %}
+			{% endif %}
+			<aside id="tmnavigation" class="close">
+				<nav class="main-menu">
+					{% include 'partials/navigation.twig' %}
+				</nav>
+			</aside>
+			<footer>
+				{% include 'partials/footer.twig' %}
+			</footer>
+		</div>
+		{% block javascripts %}
+
+			<script src="{{ base_url }}/themes/typemill/js/script.js"></script>
+			<script src="{{ base_url }}/system/author/js/typemillutils.js?20220108"></script>
+			<script>typemillUtilities.start();</script>
+
+			{{ assets.renderJS() }}
+		
+		{% endblock %}		
+	</body>
+</html>

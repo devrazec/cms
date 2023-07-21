@@ -1,0 +1,47 @@
+setup: false
+language: en
+welcome: false
+theme: learn
+themes:
+    aboutme:
+        logotext: ''
+        logostyle: logo-round
+        startbyline: ''
+        starttitle: ''
+        startcontent: ''
+        footer1: ''
+        footer2: ''
+        footer3: ''
+    NewFolderTypemill:
+        pagelayout: layoutcentered
+        headerimage: /themes/NewFolderTypemill/images/folder-bg.webp
+        headerimageblur: '5'
+        headerimagedarken: '0.5'
+        slogan: ''
+        footercustomtext: ''
+    learn:
+        theme: theme-standard
+        gitlink: ''
+        chapter: Chapter
+    typemill:
+        start: Start
+        chapter: Chapter
+        authorIntro: Author
+        modifiedText: 'Last updated'
+        modifiedFormat: d.m.Y
+        gitlink: ''
+    personal:
+        subheadline: ''
+        navigation: Navigation
+        facebook: ''
+        twitter: ''
+        instagram: ''
+        linkedin2: ''
+        xing2: ''
+        play: ''
+        vimeo: ''
+        dribbble: ''
+        behance: ''
+        pinterest2: ''
+        github: ''
+        link: ''

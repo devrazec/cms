@@ -1,0 +1,59 @@
+{# The markup for folder-style pages. #}
+
+
+    <section id="pagecontent">
+
+        {% if settings.themes.NewFolderTypemill.pagelayout == "layoutsideleft" %}
+
+            <header class="layoutsideleftheader" >
+                <div class="headerwrap">
+                    <h1>{{ title }}</h1>
+                </div>
+            </header>
+
+        {% endif %}
+
+        <div class="pagewrap">
+
+        {% include 'partials/breadcrumb.twig' %}
+
+            <div class="content">
+                <article>
+
+                    {% if settings.themes.NewFolderTypemill.pagelayout == "layoutcentered" %}
+
+                        <header>
+                            <h1>{{ title }}</h1>
+                        </header>
+
+                    {% endif %}
+                    
+                    {{ content }}
+                    
+                </article>
+
+            </div>
+
+
+
+            <nav class="folder">
+
+                <ul>
+
+                    {# A dead-simple loop that grabs the subpages. #}
+
+                    {% for article in item.folderContent %}
+                        {% set page = getPageMeta(settings, article) %}
+                        <li>
+                            <a href="{{ article.urlAbs }}">
+                                <h2>{{ article.name }}</h2>
+                                <p>{{ page.meta.description|slice(0,150) }}...</p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            </nav>
+
+        </div>
+    </section>

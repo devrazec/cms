@@ -1,0 +1,78 @@
+{# This file has the extra styles and variables required to customize
+   the page header for the "Sidebar on the left" layout. #}
+
+<style>
+
+    {# Styles for the hero images #}
+    #pagecontent header.layoutsideleftheader {
+        {% if metatabs.meta.heroimage != '' %}
+            background-image: url({{ base_url }}/{{ metatabs.meta.heroimage }});
+        {% else %}
+            background-image: url({{ base_url }}{{ settings.themes.NewFolderTypemill.headerimage }});
+        {% endif %}
+        position: relative;
+        background-size: cover;
+        margin-bottom: 2rem;
+    }
+
+    #pagecontent header.layoutsideleftheader div.headerwrap {
+        margin: 0 auto;
+        max-width: 80ch;
+        {% if“ home %}
+            min-height: 20rem;
+        {% else %}
+            min-height: 15rem;
+        {% endif %}
+        padding: 2rem 4rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: end;
+    }
+
+    
+    #pagecontent header.layoutsideleftheader::before {
+        backdrop-filter: blur({{ settings.themes.NewFolderTypemill.headerimageblur }}px);
+        background-color: rgba(0,0,0,{{ settings.themes.NewFolderTypemill.headerimagedarken }});
+        content: " ";
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+    }
+
+    #pagecontent header.layoutsideleftheader h1 {
+        color: var(--text-color-2);
+        position: relative;
+        z-index: 9999;
+    }
+
+
+    {# Firefox is being dumb and doesn't support `backdrop-filter.`
+    This is the incredibly silly workaround. That just won't 
+    look as good around the edges.#}
+
+    @supports not (backdrop-filter: blur(7px)) {
+        #pagecontent header.layoutsideleftheader {
+            overflow: hidden;
+        }
+
+        #pagecontent header.layoutsideleftheader::before {
+            content: " ";
+
+            {% if metatabs.meta.heroimage != '' %}
+                background-image: url({{ base_url }}/{{ metatabs.meta.heroimage }});
+            {% else %}
+                background-image: url({{ base_url }}/themes/NewFolderTypemill/images/folder-bg.png);
+            {% endif %}
+            filter: blur({{ settings.themes.NewFolderTypemill.headerimageblur }}px);
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+</style>
+
